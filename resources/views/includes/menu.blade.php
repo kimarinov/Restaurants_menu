@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
 	<li class="nav-item">
-		<a class="nav-link" href="">Home</a>
+		<a class="nav-link" href="{{route('HomePage')}}">Home</a>
 	</li>
 	<li class="nav-item">
 		<a class="nav-link" href="{{route('restaurants.index')}}">Restourants</a>

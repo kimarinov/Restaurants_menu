@@ -6,7 +6,7 @@
 	<thead>
 		<tr>
 			<th scope="col" class="text-center">#</th>
-			<th scope="col" class="text-center">Hall</th>
+			<th scope="col" class="text-center">Restaurant</th>
 		</tr>
 	</thead>
 	<tbody>
