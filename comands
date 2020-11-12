@@ -17,3 +17,7 @@ npm install
 npm run dev
 php artisan ui bootstrap --auth
 php artisan make:middleware CheckIsAdmin
+
+composer require barryvdh/laravel-debugbar --dev
+
+

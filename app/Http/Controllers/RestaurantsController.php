@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantsController extends Controller
 {
@@ -47,7 +48,21 @@ class RestaurantsController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+
+
+        $dishes = DB::table('dish_restaurant')->where('restaurant_id', $restaurant->id)
+
+        ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
+        ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
+        ->LeftJoin('categories', 'dishes.category_id', '=','categories.id' )
+        ->get();
+        $categories = DB::table('categories')->get();
+
+        
+        
+        return view('restaurants.show', compact('dishes', 'categories'));
+
+        
     }
 
     /**
