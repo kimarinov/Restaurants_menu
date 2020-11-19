@@ -58,8 +58,6 @@ class RestaurantsController extends Controller
         ->get();
         $categories = DB::table('categories')->get();
 
-        
-        
         return view('restaurants.show', compact('dishes', 'categories'));
 
         
@@ -101,6 +99,19 @@ class RestaurantsController extends Controller
 
     public function choose_level (Restaurant $restaurant)
     {
-        return view('restaurants.choose_level', compact('restaurant') );
+        return view('restaurants.choose_level', compact('restaurant'));
     }
+
+    public function restaurants_menu(Request $request)
+    {
+        $dishes = DB::table('dish_restaurant')->where('restaurant_id', $request->restaurant)
+            ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
+            ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
+            ->LeftJoin('categories', 'dishes.category_id', '=','categories.id' )
+            ->get();
+        $categories = DB::table('categories')->get();
+        $choose = $request->choose;
+        return view('restaurants.menu', compact('dishes', 'categories','choose'));  
+    }
+
 }

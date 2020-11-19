@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 <h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
-
+{{-- {{dd($categories)}} --}}
+{{dd($choose)}}
 
 <form action="show_submit" method="get" accept-charset="utf-8">
 	
