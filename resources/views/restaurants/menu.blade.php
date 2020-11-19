@@ -68,7 +68,6 @@
 				<tr>
 					<th scope="col" class="text-center">#</th>	
 					<th scope="col" class="text-center">Third Menu</th>
-					
 				</tr>
 			</thead>
 			<tbody>
