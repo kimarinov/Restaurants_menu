@@ -88,7 +88,6 @@ class RestaurantsController extends Controller
 
     public function restaurants_menu(Request $request)
     {
-        
         $dishes = DB::table('dish_restaurant')->where('restaurant_id', $request->restaurant)
             ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
             ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
@@ -100,7 +99,11 @@ class RestaurantsController extends Controller
     }
     public function calc_sum(Request $request)
     {
-        dd(2);
+        dd($request->dish);
+        foreach ($variable as $key => $value) {
+            # code...
+        }
+        return view('restaurants.calc_sum');
     }
 
 }

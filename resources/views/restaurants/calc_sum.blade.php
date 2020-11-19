@@ -1,0 +1,1 @@
+<h3>Total price is</h3>

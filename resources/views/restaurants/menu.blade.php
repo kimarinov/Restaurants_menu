@@ -23,7 +23,7 @@
 					@if($dish->category_id == 1)
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">
-						<input type="checkbox" name="" value="{{$dish->price}}">
+						<input type="checkbox" name="{{$dish->id}}" value="{{$dish->price}}">
 						<label>
 							{{ $dish->dish_name}}
 						</label>
