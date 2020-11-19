@@ -23,7 +23,7 @@
 					@if($dish->category_id == 1)
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">
-						<input type="checkbox" id="dish" name="{{$dish->dish_name}}" value="{{$dish->price}}">
+						<input type="checkbox" id="" name="{{$dish->dish_name}}" value="{{$dish->price}}">
 						<label>
 							{{ $dish->dish_name}}
 						</label>
@@ -52,7 +52,7 @@
 						@if($dish->category_id == 2)
 							<td class="text-center"><?= $num++ ?></td>
 							<td class="text-center">
-								<input type="checkbox" name="" value="{{$dish->price}}">
+								<input type="checkbox" name="{{$dish->dish_name}}" value="{{$dish->price}}">
 								<label>
 									{{ $dish->dish_name}}
 								</label>
@@ -80,7 +80,7 @@
 						@if($dish->category_id == 3)
 							<td class="text-center"><?= $num++ ?></td>
 							<td class="text-center">
-								<input type="checkbox" name="" value="{{$dish->price}}">
+								<input type="checkbox" name="{{$dish->dish_name}}" value="{{$dish->price}}">
 								<label>
 									{{ $dish->dish_name}}
 								</label>

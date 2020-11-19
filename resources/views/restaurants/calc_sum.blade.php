@@ -1,1 +1,1 @@
-<h3>Total price is</h3>
+<h3>Total price is {{$sum}}</h3>

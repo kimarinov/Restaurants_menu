@@ -99,11 +99,16 @@ class RestaurantsController extends Controller
     }
     public function calc_sum(Request $request)
     {
-        dd($request->dish_1);
-        // foreach ($variable as $key => $value) {
-        //     # code...
-        // }
-        return view('restaurants.calc_sum');
+        //dd($request->except('_token', '_method'));
+        // dd($request->input());
+        // dd($request->all());
+        $sum = 0;
+        foreach ($request->except('_token', '_method') as  $value)
+        {
+            $sum +=$value;        
+        }
+         //dd($sum);
+        return view('restaurants.calc_sum',compact('sum'));
     }
 
 }
