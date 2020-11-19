@@ -98,4 +98,9 @@ class RestaurantsController extends Controller
     {
         //
     }
+
+    public function choose_level (Restaurant $restaurant)
+    {
+        return view('restaurants.choose_level', compact('restaurant') );
+    }
 }
