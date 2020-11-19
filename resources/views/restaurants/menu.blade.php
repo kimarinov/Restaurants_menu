@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('content')
 <h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
-{{-- {{dd($categories)}} --}}
-
+{{-- {{dd($dishes->first())}} --}}
 @if($choose == 3)
-	<form action="show_submit" method="get" accept-charset="utf-8">
-		
+	<form action="{{route('calc.sum',$dishes->first()->restaurant_id)}}" method="POST" accept-charset="utf-8">
+		{{ csrf_field() }}
+ 		{{ method_field('POST') }}
 		<table class="table table-dark">
 			<thead>
 				<tr>
@@ -93,4 +93,5 @@
 		<input type="submit" name="" value="Total price">
 	</form>
 @endif
+
 @endsection

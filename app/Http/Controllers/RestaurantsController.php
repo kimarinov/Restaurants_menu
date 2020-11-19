@@ -48,19 +48,7 @@ class RestaurantsController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-
-
-        $dishes = DB::table('dish_restaurant')->where('restaurant_id', $restaurant->id)
-
-        ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
-        ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
-        ->LeftJoin('categories', 'dishes.category_id', '=','categories.id' )
-        ->get();
-        $categories = DB::table('categories')->get();
-
-        return view('restaurants.show', compact('dishes', 'categories'));
-
-        
+         return view('restaurants.show', compact('restaurant')); 
     }
 
     /**
@@ -97,13 +85,10 @@ class RestaurantsController extends Controller
         //
     }
 
-    public function choose_level (Restaurant $restaurant)
-    {
-        return view('restaurants.choose_level', compact('restaurant'));
-    }
 
     public function restaurants_menu(Request $request)
     {
+        
         $dishes = DB::table('dish_restaurant')->where('restaurant_id', $request->restaurant)
             ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
             ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
@@ -112,6 +97,10 @@ class RestaurantsController extends Controller
         $categories = DB::table('categories')->get();
         $choose = $request->choose;
         return view('restaurants.menu', compact('dishes', 'categories','choose'));  
+    }
+    public function calc_sum(Request $request)
+    {
+        dd(2);
     }
 
 }

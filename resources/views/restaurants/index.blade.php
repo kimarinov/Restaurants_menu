@@ -16,7 +16,7 @@
 		@foreach( $restaurants as $restaurant )
 		<tr>
 			<td class="text-center"><?= $num++ ?></td>
-			<td class="text-center"><a href="{{route('restorant.choose',$restaurant->id)}}" >{{ $restaurant->restaurant_name }}</a> </td>
+			<td class="text-center"><a href="{{route('restaurants.show',$restaurant->id)}}" >{{ $restaurant->restaurant_name }}</a> </td>
 		</tr>
 		@endforeach
 	</tbody>
