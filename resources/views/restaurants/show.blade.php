@@ -1,98 +1,20 @@
 @extends('layouts.admin')
 @section('content')
-<h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
+<h3>Whaat You choose</h3>
+{{-- {{dd($restaurant)}} --}}
 
 
-<form action="show_submit" method="get" accept-charset="utf-8">
-	
-
-	<table class="table table-dark">
-		<thead>
-			<tr>
-				<th scope="col" class="text-center">#</th>	
-				<th scope="col" class="text-center">First Menu</th>
-			</tr>
-		</thead>
-		<tbody>
-			@php
-			$num = 1;
-			@endphp
-			@foreach($dishes as $dish)
-
-			<tr>
-				@if($dish->category_id == 1)
-				<td class="text-center"><?= $num++ ?></td>
-				<td class="text-center">
-					<input type="checkbox" name="" value="{{$dish->price}}">
-					<label>
-						{{ $dish->dish_name}}
-					</label>
-				</td>
-			
-				@endif
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
-
-	<table class="table table-dark">
-		<thead>
-			<tr>
-				<th scope="col" class="text-center">#</th>	
-				<th scope="col" class="text-center">Second Menu</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			@php
-			$num = 1;
-			@endphp
-			@foreach($dishes as $dish)
-				<tr>
-					@if($dish->category_id == 2)
-						<td class="text-center"><?= $num++ ?></td>
-						<td class="text-center">
-							<input type="checkbox" name="" value="{{$dish->price}}">
-							<label>
-								{{ $dish->dish_name}}
-							</label>
-						</td>
-					@endif
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
-
-	<table class="table table-dark">
-		<thead>
-			<tr>
-				<th scope="col" class="text-center">#</th>	
-				<th scope="col" class="text-center">Third Menu</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			@php
-			$num = 1;
-			@endphp
-			@foreach($dishes as $dish)
-				<tr>
-					@if($dish->category_id == 3)
-						<td class="text-center"><?= $num++ ?></td>
-						<td class="text-center">
-							<input type="checkbox" name="" value="{{$dish->price}}">
-							<label>
-								{{ $dish->dish_name}}
-							</label>
-						</td>
-					@endif
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
-	<input type="submit" name="" value="Total price">
+<form action="{{route('restaurant.menu',$restaurant->id)}}" method="POST">
+	{{ csrf_field() }}
+ 	{{ method_field('POST') }}
+	 <input type="radio" id="" name="choose" value="1">
+	 <label for="male">starter + salad + main + drinks</label><br>
+	 <input type="radio" id="" name="choose" value="2">
+	 <label for="male">salad + drinks</label><br>
+	 <input type="radio" id="" name="choose" value="3">
+	 <label for="male">Free consumation</label><br>
+	 <input type="submit" name="" value="submit!">
+	 <input type="hidden" name="restaurant" value="{{$restaurant->id}}">
 </form>
+
 @endsection
-
-
-
