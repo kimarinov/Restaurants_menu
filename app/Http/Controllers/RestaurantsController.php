@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantsController extends Controller
 {
@@ -95,20 +96,30 @@ class RestaurantsController extends Controller
             ->get();
         $categories = DB::table('categories')->get();
         $choose = $request->choose;
-        return view('restaurants.menu', compact('dishes', 'categories','choose'));  
+        $people = $request->number_of_people;
+        $money = $request->money;
+        return view('restaurants.menu', compact('dishes', 'categories','choose','people','money'));  
     }
-    public function calc_sum(Request $request)
+    public function calc_sum(Request $request, $money)
     {
         //dd($request->except('_token', '_method'));
         // dd($request->input());
-        // dd($request->all());
+       // dd($request->all());
+        // dd($money);
+
         $sum = 0;
-        foreach ($request->except('_token', '_method') as  $value)
+        foreach ($request->except('_token', '_method','money') as  $value)
         {
             $sum +=$value;        
         }
-         //dd($sum);
-        return view('restaurants.calc_sum',compact('sum'));
+
+        if($sum < $request->money)
+        {
+            dd(Session::has('success'));
+            return view('restaurants.calc_sum',compact('sum','money'))->with('success','U can purches');
+        }
+
+        dd(2);
     }
 
 }
