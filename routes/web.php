@@ -12,3 +12,7 @@ Route::post('restaurants/chose/restaurant/calc/{rostarants_id}', 'RestaurantsCon
 
 //dishes
 Route::resource('dishes', 'DishesController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
