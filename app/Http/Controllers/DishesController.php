@@ -38,7 +38,18 @@ class DishesController extends Controller
      */
     public function create()
     {
-        //
+        $dishes = DB::table('dishes')
+            ->Join('categories', 'dishes.category_id', '=', 'categories.id')
+            ->select('dishes.*','categories.category_name')
+            ->get();
+        $restaurants = DB::table('restaurants')
+            ->get(); 
+            //dd($dishes);
+        $categories = DB::table('categories')
+        ->get();
+
+        return view('dishes.create', compact('dishes','restaurants','categories'));
+
     }
 
     /**
@@ -49,7 +60,18 @@ class DishesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+
+        DB::table('dishes')->insert([
+            ['name'=>$request->name,
+            'price' => $request->geographic_coordinate,
+            'category_id'=> $request->rw ]
+        ]);
+        DB::table('dish_restaurant')->insert([
+            ['dish_id'=>$request->name,
+            'restaurant_id' => $request->geographic_coordinate,]
+        ]);
+
     }
 
     /**
