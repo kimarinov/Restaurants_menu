@@ -60,17 +60,19 @@ class DishesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
 
         DB::table('dishes')->insert([
-            ['name'=>$request->name,
-            'price' => $request->geographic_coordinate,
-            'category_id'=> $request->rw ]
+            ['dish_name'=>$request->name,
+            'price' => $request->price,
+            'category_id'=> $request->category_id ]
         ]);
-        DB::table('dish_restaurant')->insert([
-            ['dish_id'=>$request->name,
-            'restaurant_id' => $request->geographic_coordinate,]
-        ]);
+        // DB::table('dish_restaurant')->insert([
+        //     ['dish_id'=>$request->name,
+        //     'restaurant_id' => $request->geographic_coordinate,]
+        // ]);
+        return redirect()->route('resorts.index')
+            ->with('success', 'New meal created!');
 
     }
 
@@ -93,19 +95,32 @@ class DishesController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        $dish = DB::table('dishes')
+                ->where('dishes.id',$dish->id)
+                ->Join('categories', 'dishes.category_id', '=', 'categories.id')
+                ->select('dishes.*','categories.category_name')
+                ->get()->first();
+        $categories = DB::table('categories')
+        ->get();
+        //dd($categories);
+
+        return view('dishes.update',compact('dish','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Dish $dish)
     {
-        //
+        //dd($request->all());
+        //dd($dish->id);
+        DB::table('dishes')
+                ->where('dishes.id',$dish->id)
+                ->update([
+                        'dish_name'=>$request->name,
+                        'price' => $request->price,
+                        'category_id'=> $request->category_id,
+                        ]);
+                return redirect()->route('dishes.index')
+            ->with('success', 'Update!');
     }
 
     /**
@@ -116,6 +131,9 @@ class DishesController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+       DB::table('dishes')->where('id', $dish->id)->delete();
+         
+         return redirect()->route('dishes.index')
+            ->with('success', 'Deleted!');
     }
 }

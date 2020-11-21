@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 @section('content')
+@if( Session::has('success') )
+	<div class="alert alert-success">
+		{{ Session::get('success') }}
+	</div>
+@endif
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{route('dishes.create')}}">
@@ -67,10 +72,10 @@
 		            			<a class="btn btn-xs btn-primary" href="">
 		            				View
 		            			</a>
-		            			<a  class="btn btn-xs btn-info" href="">
+		            			<a  class="btn btn-xs btn-info" href="{{route('dishes.edit',$dish->id )}}">
 		            				Edit
 		            			</a>
-		            			<form action="index_submit" method="Post" accept-charset="utf-8" style="display: inline-block;">
+		            			<form action="{{route('dishes.destroy',$dish->id )}}" method="Post" style="display: inline-block;">
 		            				{{ csrf_field() }}
 									{{ method_field('DELETE') }}
 		            				<input type="submit" class="btn btn-xs btn-danger" name="" value="Delete">
@@ -83,5 +88,4 @@
 		   </div>
 	   </div>
 	</div>
-<h2>dishes</h2>
 @endsection

@@ -29,7 +29,7 @@
 					    <div class="col-sm-10">
 					      	<div class="form-check">
 					        	@foreach( $restaurants as $restaurant )
-									<input type="checkbox" name="restaurant" value="{{$restaurant->id}}"  class="form-check-input">
+									<input type="checkbox" name="restaurant-{{$restaurant->restaurant_name}}" value="{{$restaurant->id}}"  class="form-check-input">
 									<label for="category" class="form-check-label">
 										{{ $restaurant->restaurant_name }}
 									</label>
