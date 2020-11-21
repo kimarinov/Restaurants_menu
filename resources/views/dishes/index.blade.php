@@ -59,8 +59,6 @@
 		            			{{$dish->price}}
 		            		</td>
 		            		<td>
-		            			{{-- 
-		            			{{dd($dish->id)}} --}}
 		            			@foreach($restaurants as $restaurant)
 		            			@if($dish->id == $restaurant->dish_id)
 		            				{{$restaurant->restaurant_name}}<br>
@@ -69,7 +67,7 @@
 		            		</td>
 
 		            		<td>
-		            			<a class="btn btn-xs btn-primary" href="">
+		            			<a class="btn btn-xs btn-primary" href="{{route('dishes.show',$dish->id )}}">
 		            				View
 		            			</a>
 		            			<a  class="btn btn-xs btn-info" href="{{route('dishes.edit',$dish->id )}}">
