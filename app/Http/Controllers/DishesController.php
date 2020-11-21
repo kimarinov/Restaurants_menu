@@ -8,11 +8,7 @@ use DB;
 
 class DishesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         $dishes = DB::table('dishes')
@@ -47,7 +43,6 @@ class DishesController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
 
         DB::table('dishes')->insert([
             ['dish_name'=>$request->name,
@@ -55,10 +50,6 @@ class DishesController extends Controller
             'category_id'=> $request->category_id,
             'created_at'=> now(),]
         ]);
-        // DB::table('dish_restaurant')->insert([
-        //     ['dish_id'=>$request->name,
-        //     'restaurant_id' => $request->geographic_coordinate,]
-        // ]);
         return redirect()->route('dishes.index')
             ->with('success', 'New meal created!');
 
@@ -88,7 +79,6 @@ class DishesController extends Controller
                 ->get()->first();
         $categories = DB::table('categories')
         ->get();
-        //dd($categories);
 
         return view('dishes.update',compact('dish','categories'));
     }
@@ -96,8 +86,6 @@ class DishesController extends Controller
 
     public function update(Request $request, Dish $dish)
     {
-        //dd($request->all());
-        //dd($dish->id);
         DB::table('dishes')
                 ->where('dishes.id',$dish->id)
                 ->update([
@@ -110,12 +98,6 @@ class DishesController extends Controller
             ->with('success', 'Update!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Dish $dish)
     {
        DB::table('dishes')->where('id', $dish->id)->delete();
