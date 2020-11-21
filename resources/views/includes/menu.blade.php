@@ -6,7 +6,7 @@
 		<a class="nav-link" href="{{route('restaurants.index')}}">Restourants</a>
 	</li>
 	<li class="nav-item">		
-		<a class="nav-link" href="">Dishes</a>		
+		<a class="nav-link" href="{{route('dishes.index')}}">Meals</a>		
 	</li>
 	<li class="nav-item">		
 		<a class="nav-link" href="">Drinks</a>		

@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Dish;
 use Illuminate\Http\Request;
-use DB;
 
-class DishesController extends Controller
+class DisgesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +14,7 @@ class DishesController extends Controller
      */
     public function index()
     {
-        $dishes = DB::table('dishes')
-        ->Join('categories', 'dishes.category_id', '=', 'categories.id')
-        // ->LeftJoin('dish_restaurant','dishes.category_id', '=', 'dish_restaurant.dish_id')
-        ->select('dishes.*','categories.category_name')
-        ->get();
-        //dd($dishes);
-        $restaurants = DB::table('dishes')
-        ->Join('dish_restaurant','dishes.category_id', '=', 'dish_restaurant.dish_id')
-        ->Join('restaurants', 'dish_restaurant.restaurant_id','=', 'restaurants.id')
-        ->select('dishes.*','restaurants.restaurant_name')
-        ->get();
-         // dd(($restaurants)->first());
-         dd(($restaurants));
-        return view('dishes.index',compact('dishes','restaurants'));
+        //
     }
 
     /**

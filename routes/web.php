@@ -10,5 +10,5 @@ Route::post('restaurants/chose/restaurant/{restorant_id}', 'RestaurantsControlle
 
 Route::post('restaurants/chose/restaurant/calc/{rostarants_id}', 'RestaurantsController@calc_sum')->name('calc.sum');
 
-//dishe
-Route::resource('/dishes',)
+//dishes
+Route::resource('dishes', 'DishesController');
