@@ -52,8 +52,13 @@
             			{{$dish->price}}
             		</td>
             		<td>
-            			restaurants<br>
-            			restaurants<br>
+            			{{-- 
+            			{{dd($dish->id)}} --}}
+            			@foreach($restaurants as $restaurant)
+            			@if($dish->id == $restaurant->dish_id)
+            				{{$restaurant->restaurant_name}}<br>
+            			@endif
+            			@endforeach
             		</td>
 
             		<td>

@@ -21,13 +21,13 @@ class DishesController extends Controller
         ->select('dishes.*','categories.category_name')
         ->get();
         //dd($dishes);
-        $restaurants = DB::table('dishes')
-        ->Join('dish_restaurant','dishes.category_id', '=', 'dish_restaurant.dish_id')
-        ->Join('restaurants', 'dish_restaurant.restaurant_id','=', 'restaurants.id')
-        ->select('dishes.*','restaurants.restaurant_name')
-        ->get();
+        $restaurants = DB::table('dish_restaurant')
+            ->Join('restaurants', 'dish_restaurant.restaurant_id','=', 'restaurants.id')
+            ->select('dish_restaurant.dish_id','restaurants.restaurant_name') 
+            ->get();
+
          // dd(($restaurants)->first());
-         dd(($restaurants));
+         //dd(($restaurants));
         return view('dishes.index',compact('dishes','restaurants'));
     }
 
