@@ -1,0 +1,29 @@
+composer create-project --prefer-dist laravel/laravel:^7.0 blog
+
+//make factory
+php artasan make:factory CourseFactory --model=CoursWe
+Course:: truncate();
+
+php artisan make:controller PhotosController --resource --model=Photo
+
+php artisan make:migration create_lecture_table --create=lectures
+php artisan make:migration add_name_column_to_courses_table --table=courses
+
+
+composer require laravelcollective/html
+composer require nesbot/carbon
+
+composer require laravel/ui:^2.4
+php artisan ui bootstrap
+npm install
+npm run dev
+php artisan ui bootstrap --auth
+php artisan make:middleware CheckIsAdmin
+
+composer require barryvdh/laravel-debugbar --dev
+
+
+
+
+
+
