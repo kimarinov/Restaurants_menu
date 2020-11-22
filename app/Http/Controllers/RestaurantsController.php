@@ -103,10 +103,7 @@ class RestaurantsController extends Controller
     }
     public function calc_sum(Request $request, $money)
     {
-        //dd($request->except('_token', '_method'));
-        // dd($request->input());
-       // dd($request->all());
-        // dd($money);
+        
 
         $sum = 0;
         foreach ($request->except('_token', '_method','money') as  $value)
@@ -120,7 +117,6 @@ class RestaurantsController extends Controller
             return view('restaurants.calc_sum',compact('sum','money'))->with('success','U can purches');
         }
 
-        dd(2);
     }
    
 
