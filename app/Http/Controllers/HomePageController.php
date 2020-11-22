@@ -9,7 +9,7 @@ class HomePageController extends Controller
 {
     public function index()
     {
-    	
-    	return view('HomePage');
+    	$user = Auth::user();
+    	return view('HomePage',compact('user'));
     }
 }
