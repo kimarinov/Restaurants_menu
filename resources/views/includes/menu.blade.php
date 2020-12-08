@@ -1,4 +1,4 @@
-<ul>
+<ul class="nav nav-tabs">
 	<li class="nav-item">
 		<a class="nav-link" href="{{route('HomePage')}}">Home</a>
 	</li>
@@ -19,13 +19,13 @@
 		@endif
 	 		<li class="nav-item">		
 				<a class="nav-link" href="{{ route('logout') }}"
-	       			onclick="event.preventDefault();
-	                document.getElementById('logout-form').submit();">
-	        		Logout
-			    </a>	
-			    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-	        		@csrf
-	    		</form>	
+	       onclick="event.preventDefault();
+	                     document.getElementById('logout-form').submit();">
+	        Logout
+	    </a>	
+	    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+	        @csrf
+	    </form>	
 			</li>
 		@else
 			<li class="nav-item">		
@@ -35,8 +35,5 @@
 				<a class="nav-link" href="{{route('register')}}">Register</a>		
 			</li>
 	@endif
-	<li class="nav-item">
-		<button id="theme-toggle" class="fas fa-{{ $theme == 'dark' ? 'sun' : 'moon' }} nav-link" onclick="toogle()"><i>Light/Dark</i></button>
-	</li>
 
-</ul> 
+</ul>
