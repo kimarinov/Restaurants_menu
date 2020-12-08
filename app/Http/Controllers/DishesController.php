@@ -36,7 +36,6 @@ class DishesController extends Controller
             //dd($dishes);
         $categories = DB::table('categories')
         ->get();
-
         return view('dishes.create', compact('dishes','restaurants','categories'));
 
     }
