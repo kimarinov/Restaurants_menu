@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomepageController@index')->name('HomePage');
+
 //restourants
 Route::resource('/restaurants', 'RestaurantsController')->only('index','show');
 
@@ -11,4 +12,4 @@ Route::post('restaurants/chose/restaurant/{restorant_id}', 'RestaurantsControlle
 Route::post('restaurants/chose/restaurant/calc/{rostarants_id}', 'RestaurantsController@calc_sum')->name('calc.sum');
 
 //dishe
-Route::resource('/dishes',)
+Route::resource('/dishes',);
