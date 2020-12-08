@@ -3,9 +3,9 @@
 <h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
 {{-- {{dd($dishes->first())}} --}}
 @if($choose == 1)
-	<form action="{{route('calc.sum',$money)}}" method="POST" accept-charset="utf-8">
+	<form action="{{route('calc.sum',$money)}}" method="PUT" accept-charset="utf-8">
 		{{ csrf_field() }}
- 		{{ method_field('POST') }}
+ 		{{ method_field('PUT') }}
 		<table class="table table-dark">
 			<thead>
 				<tr>
@@ -113,7 +113,8 @@
 					@if($dish->category_id == 1)
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">
-						<input type="number" name="{{$dish->price}}" value="" width: 80px >
+						<input type="number" name="{{$dish->dish_name}}"  width: 80px >
+						<input type="hidden" name="{{ $dish->price}}" value="{{ $dish->price}} ">
 						<label>
 							{{ $dish->dish_name}}
 						</label>

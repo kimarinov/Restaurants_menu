@@ -90,6 +90,7 @@ class RestaurantsController extends Controller
 
     public function restaurants_menu(Request $request)
     {
+        //dd($request->all());
         $dishes = DB::table('dish_restaurant')->where('restaurant_id', $request->restaurant)
             ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
             ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
@@ -101,19 +102,29 @@ class RestaurantsController extends Controller
         $money = $request->money;
         return view('restaurants.menu', compact('dishes', 'categories','choose','people','money'));  
     }
-    public function calc_sum(Request $request, $money)
+    public function calc_sum(request $request)
     {
         
+        dd($request->query());
+         $sum = 0;
 
-        $sum = 0;
         foreach ($request->except('_token', '_method','money') as  $value)
         {
             $sum +=$value;        
         }
+        dd($sum);
+
+
+        $sum = 0;
+        // foreach ($request->except('_token', '_method','money') as  $value)
+        // {
+        //     $sum +=$value;        
+        // }
+        // dd($sum);
 
         if($sum < $request->money)
         {
-            dd(Session::has('success'));
+           // dd(Session::has('success'));
             return view('restaurants.calc_sum',compact('sum','money'))->with('success','U can purches');
         }
 
