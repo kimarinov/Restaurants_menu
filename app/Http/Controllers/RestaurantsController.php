@@ -104,31 +104,35 @@ class RestaurantsController extends Controller
     }
     public function calc_sum(request $request)
     {
-        
-        dd($request->query());
-         $sum = 0;
-
+        //dd($request->all());
+        $sum = 0;
+         $first_order = $request->except('_token', '_method','money');
+        // dd($request->input('meal_2'));
+        //$test = $request->input('meal_2');
+        //dd($test);
+        //dd(DB::table('dishes')->where('id', 2)->first()->price);
         foreach ($request->except('_token', '_method','money') as  $value)
         {
-            $sum +=$value;        
+            $sum +=DB::table('dishes')->where('id', $value)->first()->price;        
         }
-        dd($sum);
+        //dd($sum);
 
-
-        $sum = 0;
-        // foreach ($request->except('_token', '_method','money') as  $value)
-        // {
-        //     $sum +=$value;        
-        // }
-        // dd($sum);
-
-        if($sum < $request->money)
+        if($sum < ($request->money * 1.05))
         {
-           // dd(Session::has('success'));
-            return view('restaurants.calc_sum',compact('sum','money'))->with('success','U can purches');
+            $money = $request->money;
+            return view('restaurants.choise',compact('sum','money','first_order'))->with('success','U can purches');
+
+        }
+        else
+        {
+            dd("нямате достатачно пари");
         }
 
     }
-   
-
+    public function final_order(request $request)
+    {   
+        
+        dd($request->all());
+    }
 }
+

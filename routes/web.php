@@ -10,7 +10,10 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::post('restaurants/chose/restaurant/{restorant_id}', 'RestaurantsController@restaurants_menu')->name('restaurant.menu');
 
-	Route::post('restaurants/chose/restaurant/calc/{rostarants_id}', 'RestaurantsController@calc_sum')->name('calc.sum');
+	Route::post('restaurants/chose/restaurant/calc/new', 'RestaurantsController@calc_sum')->name('calc.sum');
+
+	Route::post('restaurants/chose/restaurant/calc/new/final', 'RestaurantsController@final_order')->name('final_order');
+
 
 	//dishes
 	Route::resource('dishes', 'DishesController')->middleware('isAdmin');

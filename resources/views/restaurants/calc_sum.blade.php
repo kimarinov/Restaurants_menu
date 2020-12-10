@@ -1,3 +1,4 @@
+{{-- {{dd(2323)}} --}}
 @extends('layouts.admin')
 @section('content')
 	@if( Session::has('success') )

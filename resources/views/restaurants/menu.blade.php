@@ -3,9 +3,9 @@
 <h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
 {{-- {{dd($dishes->first())}} --}}
 @if($choose == 1)
-	<form action="{{route('calc.sum',$money)}}" method="PUT" accept-charset="utf-8">
+	<form action="{{route('calc.sum')}}" method="POST" accept-charset="utf-8">
 		{{ csrf_field() }}
- 		{{ method_field('PUT') }}
+ 		{{ method_field('POST') }}
 		<table class="table table-dark">
 			<thead>
 				<tr>
@@ -23,7 +23,7 @@
 					@if($dish->category_id == 1)
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">
-						<input type="checkbox" id="" name="{{$dish->dish_name}}" value="{{$dish->price}}">
+						<input type="checkbox" name="{{$dish->dish_name}}" value="{{$dish->dish_id}}" checked>
 						<label>
 							{{ $dish->dish_name}}
 						</label>
@@ -52,7 +52,7 @@
 						@if($dish->category_id == 2)
 							<td class="text-center"><?= $num++ ?></td>
 							<td class="text-center">
-								<input type="checkbox" name="{{$dish->dish_name}}" value="{{$dish->price}}">
+								<input type="checkbox" name="{{$dish->dish_name}}" value="{{$dish->dish_id}}" checked>
 								<label>
 									{{ $dish->dish_name}}
 								</label>
@@ -79,7 +79,7 @@
 						@if($dish->category_id == 3)
 							<td class="text-center"><?= $num++ ?></td>
 							<td class="text-center">
-								<input type="checkbox" name="{{$dish->dish_name}}" value="{{$dish->price}}">
+								<input type="checkbox" name="{{$dish->dish_name}}" value="{{$dish->dish_id}}" checked="">
 								<label>
 									{{ $dish->dish_name}}
 								</label>
@@ -89,6 +89,7 @@
 				@endforeach
 			</tbody>
 		</table>
+		<input type="hidden" name="money" value="{{$money}}">
 		<input type="submit" name="" value="Total price">
 	</form>
 @endif
