@@ -90,6 +90,7 @@
 			</tbody>
 		</table>
 		<input type="hidden" name="money" value="{{$money}}">
+		<input type="hidden" name="people" value="{{$people}}">
 		<input type="submit" name="" value="Total price">
 	</form>
 @endif

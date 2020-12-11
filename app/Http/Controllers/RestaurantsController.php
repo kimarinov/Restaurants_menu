@@ -10,83 +10,43 @@ use Illuminate\Support\Facades\Auth;
 
 class RestaurantsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         $restaurants = Restaurant::all();
         return view('restaurants.index', compact('restaurants'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
     public function show(Restaurant $restaurant)
     {
          return view('restaurants.show', compact('restaurant')); 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Restaurant $restaurant)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Restaurant $restaurant)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Restaurant $restaurant)
     {
         //
     }
-
 
     public function restaurants_menu(Request $request)
     {
@@ -105,23 +65,24 @@ class RestaurantsController extends Controller
     public function calc_sum(request $request)
     {
         //dd($request->all());
+       
+        $first_order = $request->except('_token', '_method','money','people');
+        $json_first_oreder = json_encode($first_order);
+        $people = $request['people'];
+        $money = $request->money;
+
+
         $sum = 0;
-         $first_order = $request->except('_token', '_method','money');
-        // dd($request->input('meal_2'));
-        //$test = $request->input('meal_2');
-        //dd($test);
-        //dd(DB::table('dishes')->where('id', 2)->first()->price);
-        foreach ($request->except('_token', '_method','money') as  $value)
+        foreach ($request->except('_token', '_method','money','people') as  $value)
         {
             $sum +=DB::table('dishes')->where('id', $value)->first()->price;        
         }
-        //dd($sum);
 
-        if($sum < ($request->money * 1.05))
+        $sum = $sum * $people * 1.05;
+    
+        if($sum < $request->money)
         {
-            $money = $request->money;
-            return view('restaurants.choise',compact('sum','money','first_order'))->with('success','U can purches');
-
+            return view('restaurants.choise',compact('sum','money','json_first_oreder','people'))->with('success','U can purches');
         }
         else
         {
@@ -131,8 +92,35 @@ class RestaurantsController extends Controller
     }
     public function final_order(request $request)
     {   
+        //dd($request->all());
+        $json_first_oreder = json_decode($request->input('j1'));
+        $people = $request->people;
+        $sum = $request->sum;
+
+
+        $orders = [];
+        foreach ($json_first_oreder as  $value) {
+             $orders[DB::table('dishes')->where('id', $value)->first()->dish_name] = DB::table('dishes')->where('id', $value)->first()->price;
+        }
+        if ($request->choose == 3) {
+            //dd(2);
+           //return view('restaurants.secondChoise');
+            // to do:add restorant id
+            $dishes = DB::table('dish_restaurant')->where('restaurant_id', 1)
+                ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
+                ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
+                ->havingRaw('dish_id  = ?', [3])
+                ->LeftJoin('categories', 'dishes.category_id', '=','categories.id' )
+    
+                ->get();
+                 $categories = DB::table('categories')->get();
+                 dd($dishes);
+                $choose = 1;
+                $money = $request->money;
+            return view('restaurants.menu',compact('dishes','categories','choose','money','people'));  
+        }
         
-        dd($request->all());
+         return view('restaurants.final_order', compact('orders','people','sum'));   
+       
     }
 }
-
