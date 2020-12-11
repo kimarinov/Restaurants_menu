@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 @section('content')
 <h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
-{{-- {{dd($dishes->first())}} --}}
+
+
 @if($choose == 1)
-	<form action="{{route('calc.sum')}}" method="POST" accept-charset="utf-8">
+	<form action="{{route('calc.sum')}}@endif" method="POST" accept-charset="utf-8">
 		{{ csrf_field() }}
  		{{ method_field('POST') }}
 		<table class="table table-dark">
@@ -89,11 +90,12 @@
 				@endforeach
 			</tbody>
 		</table>
+
 		<input type="hidden" name="money" value="{{$money}}">
 		<input type="hidden" name="people" value="{{$people}}">
 		<input type="submit" name="" value="Total price">
 	</form>
-@endif
+	
 @if($choose == 3)
 	<form action="{{route('calc.sum',$dishes->first()->restaurant_id)}}" method="POST" accept-charset="utf-8">
 		{{ csrf_field() }}
