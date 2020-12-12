@@ -11,7 +11,7 @@
 	</thead>
 	<tbody>
 		@php
-		$num = 1;
+			$num = 1;
 		@endphp
 		@foreach( $restaurants as $restaurant )
 		<tr>

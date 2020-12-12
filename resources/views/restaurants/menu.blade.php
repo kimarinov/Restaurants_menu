@@ -4,7 +4,7 @@
 
 
 @if($choose == 1 || $choose == 2)
-	<form action="{{route('calc.sum')}}" method="POST" accept-charset="utf-8">
+	<form action="{{route('calc.sum', $restaurant_id)}}" method="POST" accept-charset="utf-8">
 		{{ csrf_field() }}
  		{{ method_field('POST') }}
 
@@ -94,13 +94,14 @@
 		<input type="hidden" name="money" value="{{$money}}">
 		<input type="hidden" name="people" value="{{$people}}">
 		<input type="hidden" name="choose" value="{{$choose}}">
+		<input type="hidden" name="restaurant_id" value="{{$restaurant_id}}">
 		<input type="submit" name="" value="Total price">
 
 	</form>
 @endif
 
 @if($choose == 3)
-	<form action="{{route('calc.sum',$dishes->first()->restaurant_id)}}" method="POST" accept-charset="utf-8">
+	<form action="{{route('calc.sum',$restaurant_id)}}" method="POST" accept-charset="utf-8">
 		{{ csrf_field() }}
  		{{ method_field('POST') }}
 		<table class="table table-dark">
@@ -113,7 +114,7 @@
 			</thead>
 			<tbody>
 				@php
-				$num = 1;
+					$num = 1;
 				@endphp
 				@foreach($dishes as $dish)
 
@@ -122,7 +123,6 @@
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">
 						<input type="number" name="{{ $dish->dish_id}}"  width: 80px >
-						{{-- <input type="hidden" name="{{ $dish->price}}" value="{{ $dish->price}} "> --}}
 						<label>
 							{{ $dish->dish_name}}
 						</label>
@@ -144,7 +144,7 @@
 			</thead>
 			<tbody>
 				@php
-				$num = 1;
+					$num = 1;
 				@endphp
 				@foreach($dishes as $dish)
 
@@ -153,7 +153,6 @@
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">
 						<input type="number" name="{{ $dish->dish_id}}"  width: 80px >
-						{{-- <input type="hidden" name="{{ $dish->price}}" value="{{ $dish->price}} "> --}}
 						<label>
 							{{ $dish->dish_name}}
 						</label>
@@ -174,7 +173,7 @@
 			</thead>
 			<tbody>
 				@php
-				$num = 1;
+					$num = 1;
 				@endphp
 				@foreach($dishes as $dish)
 
@@ -183,7 +182,6 @@
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">
 						<input type="number" name="{{ $dish->dish_id}}"  width: 80px >
-						{{-- <input type="hidden" name="{{ $dish->price}}" value="{{ $dish->price}} "> --}}
 						<label>
 							{{ $dish->dish_name}}
 						</label>

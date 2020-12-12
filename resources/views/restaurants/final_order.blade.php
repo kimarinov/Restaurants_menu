@@ -8,8 +8,6 @@
 			<th scope="col" class="text-center">Dish</th>
 			<th scope="col" class="text-center">Price</th>
 			<th scope="col" class="text-center">Total price</th>
-
-
 		</tr>
 	</thead>
 	<tbody>

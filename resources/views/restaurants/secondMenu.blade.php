@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-{{-- {{dd($dishes)}} --}}
 <h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
 
 
@@ -16,7 +15,7 @@
 			</thead>
 			<tbody>
 				@php
-				$num = 1;
+					$num = 1;
 				@endphp
 				@foreach($dishes as $dish)
 
@@ -46,7 +45,7 @@
 			</thead>
 			<tbody>
 				@php
-				$num = 1;
+					$num = 1;
 				@endphp
 				@foreach($dishes as $dish)
 					<tr>
@@ -73,7 +72,7 @@
 			</thead>
 			<tbody>
 				@php
-				$num = 1;
+					$num = 1;
 				@endphp
 				@foreach($dishes as $dish)
 					<tr>
