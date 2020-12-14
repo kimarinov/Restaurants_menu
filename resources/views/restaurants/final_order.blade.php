@@ -40,5 +40,6 @@
 			</tr>
 	 </tfoot>
 </table>
+<a href="{{route('restaurants.index')}}" class="btn btn-warning"> Върни ме на ресторантите</a>  
 
 @endsection

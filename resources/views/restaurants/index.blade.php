@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('content')
 
-<h2>Restaurants</h2>
+<h2>Ресторанти:</h2>
 <table class="table table-dark">
 	<thead>
 		<tr>
 			<th scope="col" class="text-center">#</th>
-			<th scope="col" class="text-center">Restaurant</th>
+			<th scope="col" class="text-center">Ресторант</th>
 		</tr>
 	</thead>
 	<tbody>

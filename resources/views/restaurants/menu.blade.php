@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h3>Restaurant MENU FOR "{{$dishes->first()->restaurant_name}}"</h3>
+<h3>Меню за ресторант: "{{$dishes->first()->restaurant_name}}"</h3>
 
 
 @if($choose == 1 || $choose == 2)
@@ -13,6 +13,7 @@
 					<tr>
 						<th scope="col" class="text-center">#</th>	
 						<th scope="col" class="text-center">First Menu</th>
+						<th scope="col" class="text-center">Price</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,6 +29,7 @@
 							<label>
 								{{ $dish->dish_name}}
 							</label>
+						<td class="text-center">{{ $dish->price}}</td>
 						</td>
 					
 						@endif
@@ -41,7 +43,7 @@
 				<tr>
 					<th scope="col" class="text-center">#</th>	
 					<th scope="col" class="text-center">Second Menu</th>
-					
+					<th scope="col" class="text-center">Price</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,6 +60,7 @@
 									{{ $dish->dish_name}}
 								</label>
 							</td>
+							<td class="text-center">{{ $dish->price}}</td>
 						@endif
 					</tr>
 				@endforeach
@@ -69,6 +72,7 @@
 				<tr>
 					<th scope="col" class="text-center">#</th>	
 					<th scope="col" class="text-center">Third Menu</th>
+					<th scope="col" class="text-center">Price</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -85,6 +89,7 @@
 									{{ $dish->dish_name}}
 								</label>
 							</td>
+							<td class="text-center">{{$dish->price}}</td>
 						@endif
 					</tr>
 				@endforeach
@@ -95,7 +100,8 @@
 		<input type="hidden" name="people" value="{{$people}}">
 		<input type="hidden" name="choose" value="{{$choose}}">
 		<input type="hidden" name="restaurant_id" value="{{$restaurant_id}}">
-		<input type="submit" name="" value="Total price">
+		<input type="submit" name="" value="Избирам"  class="btn btn-success">
+		<a href="{{route('restaurants.index')}}" class="btn btn-warning"> Върни ме на ресторантите</a> 
 
 	</form>
 @endif
@@ -194,7 +200,8 @@
 		</table>
 		<input type="hidden" name="money" value="{{$money}}">
 		<input type="hidden" name="choose" value="{{$choose}}">
-		<input type="submit" name="" value="Total price">
+		<input type="submit" name="" value="Избирам"  class="btn btn-success">
+		<a href="{{route('restaurants.index')}}" class="btn btn-warning"> Върни ме на ресторантите</a>  
 	</form>
 @endif
 @endsection
