@@ -7,11 +7,17 @@
 	 			{{csrf_field()}}
 	 			<div class="form-group">
 	 				<label for="name">
-						Meal name
+						Ястие:
 					</label>
 					<input type="text" id="name" class="form-control" name="name" value="{{old('name')}}">
+					@if($errors->has('name'))
+						<div class="col-sm-7 col-sm-offset-1 text-danger">
+							{{ $errors->first('name') }} 
+						</div>
+					@endif
+
 	 				<label for="category">
-						Meal category
+						Категория:
 					</label>
 					<select name="category_id" id="category_id" class="form-control">
 						@foreach( $categories as $categoty )
@@ -19,25 +25,15 @@
 						@endforeach
 					</select>	
 					<label for="category">
-						Price
+						Цена:
 					</label>
 					<input type="text" id="price" class="form-control" name="price" value="{{old('price')}}">
-					<label for="restaurant">
-						Restaurant:
-					</label>
-					<div class="form-group row">				
-					    <div class="col-sm-10">
-					      	<div class="form-check">
-					        	@foreach( $restaurants as $restaurant )
-									<input type="checkbox" name="restaurant-{{$restaurant->restaurant_name}}" value="{{$restaurant->id}}"  class="form-check-input">
-									<label for="category" class="form-check-label">
-										{{ $restaurant->restaurant_name }}
-									</label>
-									<br>
-								@endforeach
-					      	</div>
-					    </div>	
-				    </div>	
+					@if($errors->has('price'))
+						<div class="col-sm-7 col-sm-offset-1 text-danger">
+							{{ $errors->first('price') }} 
+						</div>
+					@endif
+					
 					<input type="submit" name=""class="btn btn-danger" value="Create meal">
 	 			</div>
 	 		</form>

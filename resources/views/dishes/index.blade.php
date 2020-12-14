@@ -10,6 +10,9 @@
             <a class="btn btn-success" href="{{route('dishes.create')}}">
             	Create meal
         	</a>
+        	<a class="btn btn-success" href="{{route('dishes.create')}}">
+            	Add meals to restaurants
+        	</a>
         </div>
     </div>
     {{-- {{dd($dishes)}} --}}

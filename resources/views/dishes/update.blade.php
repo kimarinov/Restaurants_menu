@@ -11,6 +11,11 @@
 						Meal name
 					</label>
 					<input type="text" id="name" class="form-control" name="name" value="{{$dish->dish_name}}">
+					@if($errors->has('name'))
+						<div class="col-sm-7 col-sm-offset-1 text-danger">
+							{{ $errors->first('name') }} 
+						</div>
+					@endif
 	 				<label for="category">
 						Meal category
 					</label>
@@ -25,7 +30,12 @@
 						Price
 					</label>
 					<input type="text" id="price" class="form-control" name="price" value="{{$dish->price}}">
-					<input type="submit" name=""class="btn btn-danger" value="Edit meal">
+					@if($errors->has('price'))
+						<div class="col-sm-7 col-sm-offset-1 text-danger">
+							{{ $errors->first('price') }} 
+						</div>
+					@endif
+					<input type="submit" name=""class="btn btn-danger" value="Промени ястие!">
 			</div>
 		</form>
 	</div>

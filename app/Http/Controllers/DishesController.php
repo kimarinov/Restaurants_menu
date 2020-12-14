@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Dish;
 use Illuminate\Http\Request;
+use App\Http\Requests\CheckNumberRequest;
 use DB;
 
 class DishesController extends Controller
@@ -33,7 +34,6 @@ class DishesController extends Controller
             ->get();
         $restaurants = DB::table('restaurants')
             ->get(); 
-            //dd($dishes);
         $categories = DB::table('categories')
         ->get();
         return view('dishes.create', compact('dishes','restaurants','categories'));
@@ -41,14 +41,16 @@ class DishesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CheckNumberRequest $request)
     {
 
         DB::table('dishes')->insert([
-            ['dish_name'=>$request->name,
+            [
+            'dish_name'=>$request->name,
             'price' => $request->price,
             'category_id'=> $request->category_id,
-            'created_at'=> now(),]
+            'created_at'=> now(),
+            ]
         ]);
         return redirect()->route('dishes.index')
             ->with('success', 'New meal created!');
@@ -84,7 +86,7 @@ class DishesController extends Controller
     }
 
 
-    public function update(Request $request, Dish $dish)
+    public function update(CheckNumberRequest $request, Dish $dish)
     {
         DB::table('dishes')
                 ->where('dishes.id',$dish->id)
@@ -101,8 +103,8 @@ class DishesController extends Controller
     public function destroy(Dish $dish)
     {
        DB::table('dishes')->where('id', $dish->id)->delete();
-         
-         return redirect()->route('dishes.index')
+    
+        return redirect()->route('dishes.index')
             ->with('success', 'Deleted!');
     }
 }
