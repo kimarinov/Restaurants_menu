@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<h3>Броя на хората е отрицателен</h3>
+<h3>Броя на хората е отрицателен!</h3>
 <button onclick="goBack()" class="btn btn-primary">Върни ме на менюто с хората</button>
 <script>
 function goBack() {
