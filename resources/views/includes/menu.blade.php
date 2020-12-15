@@ -11,10 +11,10 @@
 				<a class="nav-link" href="{{route('dishes.index')}}">Meals</a>		
 			</li>
 			<li class="nav-item">		
-				<a class="nav-link" href="">Drinks</a>		
+				<a class="nav-link" href="{{route('drinks.index')}}">Drinks</a>		
 			</li>
 			<li class="nav-item">		
-				<a class="nav-link" href="">Users</a>		
+				<a class="nav-link" href="{{route('users.index')}}">Users</a>		
 			</li>
 		@endif
 	 		<li class="nav-item">		

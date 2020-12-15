@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Dish;
 use Illuminate\Http\Request;
-use App\Http\Requests\CheckNumberRequest;
+use App\Http\Requests\CreateUpdateDishesRequest;
 use DB;
 
 class DishesController extends Controller
@@ -40,7 +40,7 @@ class DishesController extends Controller
     }
 
 
-    public function store(CheckNumberRequest $request)
+    public function store(CreateUpdateDishesRequest $request)
     {
 
         DB::table('dishes')->insert([
@@ -87,7 +87,7 @@ class DishesController extends Controller
     }
 
 
-    public function update(CheckNumberRequest $request, Dish $dish)
+    public function update(CreateUpdateDishesRequest $request, Dish $dish)
     {
         DB::table('dishes')
                 ->where('dishes.id',$dish->id)

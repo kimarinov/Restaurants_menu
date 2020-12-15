@@ -16,8 +16,6 @@ class CheckNumberRequest extends FormRequest
    public function rules()
     {
         return [
-            'name' => 'required',
-            'price' => 'required|numeric|min:0|not_in:0',
             'money' => 'required|numeric|min:0|not_in:0',
             'number_of_people' => 'required|numeric|min:0|not_in:0',
         ];
@@ -25,12 +23,6 @@ class CheckNumberRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Полето е задължително!',
-            'name.min' => 'минимум 3 знака!',
-            'price.required'     => 'Полето е задължително!',
-            'price.numeric'     => 'Полето трябва да е цифра!',
-            'price.min'     => 'Полето трябва да е положително!',
-            'price.not_in'     => 'Полето трябва да не е 0!',
             'money.required' => 'Полето е задължително!',
             'money.numeric'     => 'Полето трябва да е цифра!',
             'money.min'     => 'Полето трябва да е положително!',

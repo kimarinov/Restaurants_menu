@@ -22,7 +22,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('dishes/MealsToRestaurants/add', 'DishesController@MealsToRestaurants')->name('MealsToRestaurants');
 	Route::post('dishes/addMealsToRestaurants/add/add', 'DishesController@addMealsToRestaurants')->name('addMealsToRestaurants');
 
+	//drinks
+	Route::resource('/drinks', 'DrinksController')->only('index');
 
+	//Users
+	Route::get('/users', 'UsersController@index')->name('users.index');
 
 });
 

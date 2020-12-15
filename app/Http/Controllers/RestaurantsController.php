@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CheckNumberRequest;
+use App\Http\Requests\NumberOfPeopleRequest;
 
 class RestaurantsController extends Controller
 {
@@ -23,7 +24,7 @@ class RestaurantsController extends Controller
          return view('restaurants.show', compact('restaurant')); 
     }
 
-    public function restaurants_menu(request $request)
+    public function restaurants_menu(CheckNumberRequest $request)
     {
         $restaurant_id = $request->restaurant;
         $dishes = DB::table('dish_restaurant')->where('restaurant_id', $restaurant_id)
@@ -31,15 +32,17 @@ class RestaurantsController extends Controller
             ->Join('dishes', 'dishes.id', '=', 'dish_restaurant.dish_id')
             ->LeftJoin('categories', 'dishes.category_id', '=','categories.id' )
             ->get();
+        $drinks = DB::table('drinks')->get();
+        // dd($drinks);
         $categories = DB::table('categories')->get();
         $choose = $request->choose;
         $people = $request->number_of_people;
         $money = $request->money;
-        return view('restaurants.menu', compact('dishes', 'categories','choose','people','money','restaurant_id'));  
+        return view('restaurants.menu', compact('dishes', 'categories','choose','people','money','restaurant_id','drinks'));  
     }
     public function calc_sum(request $request)
     {
-       //dd($request->except('_token', '_method','money','people','choose','restaurant_id'));
+    
         $choose = $request->choose;
         $money = $request->money;
         $restaurant_id = $request->restaurant_id;
@@ -113,12 +116,18 @@ class RestaurantsController extends Controller
        
     }
 
-    public function secondChoise(request $request)
-    {
-        $choose = 1;
-        $secondChoise = 1;
+    public function secondChoise(NumberOfPeopleRequest $request)
+    {  
         $first_order_people = $request->first_order_people;
         $second_order_people = $request->people - $first_order_people;
+        
+        //check for negative people input
+        if ($second_order_people <= 0) {
+            return view('restaurants.negativePeopleInput');
+        }
+        $choose = 1;
+        $secondChoise = 1;
+        
         $restaurant_id = $request->restaurant_id;
         //to do negative people check
         $json_first_oreder = $request->json_first_oreder;

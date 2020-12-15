@@ -198,6 +198,33 @@
 				@endforeach
 			</tbody>
 		</table>
+		<table class="table table-dark">
+			<thead>
+				<tr>
+					<th scope="col" class="text-center">#</th>	
+					<th scope="col" class="text-center">Питиета</th>
+					<th scope="col" class="text-center">Цена</th>
+				</tr>
+			</thead>
+			<tbody>
+				@php
+					$num = 1;
+				@endphp
+				@foreach($drinks as $drink)
+
+				<tr>
+					<td class="text-center"><?= $num++ ?></td>
+					<td class="text-center">
+						<input type="number" name="{{ $drink->id}}"  width: 80px >
+						<label>
+							{{ $drink->drinks_name}}
+						</label>
+					</td>
+					<td class="text-center">{{ $drink->price}}</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 		<input type="hidden" name="money" value="{{$money}}">
 		<input type="hidden" name="choose" value="{{$choose}}">
 		<input type="submit" name="" value="Избирам"  class="btn btn-success">
