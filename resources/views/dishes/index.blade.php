@@ -10,7 +10,7 @@
             <a class="btn btn-success" href="{{route('dishes.create')}}">
             	Create meal
         	</a>
-        	<a class="btn btn-success" href="{{route('dishes.create')}}">
+        	<a class="btn btn-success" href="{{route('MealsToRestaurants')}}">
             	Add meals to restaurants
         	</a>
         </div>

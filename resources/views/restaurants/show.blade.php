@@ -4,7 +4,7 @@
 
 <form action="{{route('restaurant.menu',$restaurant->id)}}" method="POST">
 	{{csrf_field()}}
- 	{{-- {{method_field('POST')}} --}}
+ 	{{method_field('POST')}}
  	<label>
  		Брой на хората:
  	</label>

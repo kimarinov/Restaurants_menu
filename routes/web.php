@@ -19,8 +19,11 @@ Route::middleware(['auth'])->group(function () {
 
 	//dishes
 	Route::resource('dishes', 'DishesController')->middleware('isAdmin');
+	Route::get('dishes/MealsToRestaurants/add', 'DishesController@MealsToRestaurants')->name('MealsToRestaurants');
+	Route::post('dishes/addMealsToRestaurants/add/add', 'DishesController@addMealsToRestaurants')->name('addMealsToRestaurants');
 
-	Route::get('/home', 'HomeController@index')->name('home');
+
+
 });
 
 Auth::routes();

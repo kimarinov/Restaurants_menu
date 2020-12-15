@@ -34,7 +34,7 @@
 						</div>
 					@endif
 					
-					<input type="submit" name=""class="btn btn-danger" value="Create meal">
+					<input type="submit" name=""class="btn btn-danger" value="Създай ястие">
 	 			</div>
 	 		</form>
 	 	</div>

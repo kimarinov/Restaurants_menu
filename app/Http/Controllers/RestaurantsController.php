@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CheckNumberRequest;
 
-
 class RestaurantsController extends Controller
 {
   
@@ -24,9 +23,8 @@ class RestaurantsController extends Controller
          return view('restaurants.show', compact('restaurant')); 
     }
 
-    public function restaurants_menu(request $request)
-    {   
-        //dd($request->all());
+    public function restaurants_menu(Request $request)
+    {
         $restaurant_id = $request->restaurant;
         $dishes = DB::table('dish_restaurant')->where('restaurant_id', $restaurant_id)
             ->join('restaurants', 'restaurants.id', '=', 'dish_restaurant.restaurant_id')
@@ -41,7 +39,7 @@ class RestaurantsController extends Controller
     }
     public function calc_sum(request $request)
     {
-        //dd($request->all());
+       //dd($request->except('_token', '_method','money','people','choose','restaurant_id'));
         $choose = $request->choose;
         $money = $request->money;
         $restaurant_id = $request->restaurant_id;
@@ -59,13 +57,12 @@ class RestaurantsController extends Controller
                     $sum +=DB::table('dishes')->where('id', $key)->first()->price * $value;
                     $dish_count += $value; 
                     $total_price += DB::table('dishes')->where('id', $key)->first()->price;
-                }
-                   
-                          
+                }                   
             }
 
             if ($sum > $money) {
                dd("нямате достатачно пари");
+               return view('restaurants.noMoney', compact('sum', 'money'));
             }
             return view ('restaurants.freeConsumation',compact('free_consumation_orders','sum','dish_count','total_price'));
         }
@@ -78,16 +75,16 @@ class RestaurantsController extends Controller
             $json_first_oreder = json_encode($first_order);
             $people = $request['people'];
             $choose = $request->choose;
-
-            foreach ($request->except('_token', '_method','money','people','restaurant_id') as  $value)
+          //dd(DB::table('dishes')->where('id', 2)->first()->price);
+          $count = 0;
+            foreach ($request->except('_token', '_method','money','people','restaurant_id','choose') as  $value)
             {
-                $sum +=DB::table('dishes')->where('id', $value)->first()->price;        
+                $sum += DB::table('dishes')->where('id', $value)->first()->price;  
+                $count++;      
             }
-
             $sum = $sum * $people * 1.05;
-
             if ($sum > $money) {
-               dd("нямате достатачно пари");
+                return view('restaurants.noMoney', compact('sum', 'money'));
             }
             return view('restaurants.choise',compact('sum','money','json_first_oreder','people','restaurant_id'))->with('success','U can purches');
         } 
@@ -137,30 +134,42 @@ class RestaurantsController extends Controller
             ->LeftJoin('categories', 'dishes.category_id', '=','categories.id' )
             ->get();
             $categories = DB::table('categories')->get();
-    
-        return view('restaurants.secondMenu',compact('dishes','categories','new_money','first_order_people','second_order_people','json_first_oreder','choose','secondChoise'));
+        
+        return view('restaurants.secondMenu', compact('dishes','categories','new_money','first_order_people','second_order_people','json_first_oreder','choose','secondChoise','money'));
     }
 
     public function secondChoiseFinalOrder(request $request)
     {
+        $money=$request->money;
+        
         //first order
+        $first_orders_sum = 0;
         $first_order_people =$request->first_order_people;
         $json_first_oreder = json_decode($request->json_first_oreder);
         $first_orders = [];
         foreach ($json_first_oreder as  $key =>$value) {
-             $first_orders[$key] = DB::table('dishes')->where('id', $value)->first()->price;
+            $first_orders[$key] = DB::table('dishes')->where('id', $value)->first()->price;
+            $first_orders_sum += DB::table('dishes')->where('id', $value)->first()->price;
         }
-        $total_first_price = $first_order_people *
+        
 
         //second order
+        $second_orders_sum = 0;
+        $new_money = $request->new_money;
         $second_order_people= $request->second_order_people;
-        $second_orders = $request->except('_token', '_method','first_order_people','new_money','second_order_people','json_first_oreder');
+        $second_orders = $request->except('_token', '_method','first_order_people','new_money','second_order_people','json_first_oreder','money');
 
         foreach ($second_orders as  $key => $value) {
              $second_orders[$key] = DB::table('dishes')->where('id', $value)->first()->price;
+              $second_orders_sum += DB::table('dishes')->where('id', $value)->first()->price;
+        }
+        //calc total sum
+        $sum = ($first_orders_sum * $first_order_people) + ($second_orders_sum * $second_order_people);
+
+        if ($second_orders_sum > $new_money && $sum > $money) {
+            return view('restaurants.noMoney', compact('sum','money'));
         }
 
         return view('restaurants.secondFinalOrder', compact('first_order_people','first_orders','second_orders','second_order_people','second_order_people'));
     }
-
 }
