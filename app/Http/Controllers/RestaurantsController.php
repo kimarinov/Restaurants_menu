@@ -18,12 +18,12 @@ class RestaurantsController extends Controller
         return view('restaurants.index', compact('restaurants'));
     }
 
-    public function show(Restaurant $restaurant)
+    public function show(restaurant $restaurant)
     {
          return view('restaurants.show', compact('restaurant')); 
     }
 
-    public function restaurants_menu(Request $request)
+    public function restaurants_menu(request $request)
     {
         $restaurant_id = $request->restaurant;
         $dishes = DB::table('dish_restaurant')->where('restaurant_id', $restaurant_id)
