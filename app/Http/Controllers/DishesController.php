@@ -51,7 +51,9 @@ class DishesController extends Controller
             'created_at'=> now(),
             ]
         ]);
-        return redirect()->route('dishes.index')
+        $dishes = DB::table('dishes')->get();
+        $restaurants = DB::table('restaurants')->get();
+        return view('dishes.MealsToRestaurants', compact('dishes','restaurants'))
             ->with('success', 'New meal created!');
 
     }
@@ -95,7 +97,7 @@ class DishesController extends Controller
                         'category_id'=> $request->category_id,
                         'created_at'=> now(),
                         ]);
-                return redirect()->route('dishes.index')
+        return redirect()->route('dishes.index')
             ->with('success', 'Update!');
     }
 
@@ -111,33 +113,23 @@ class DishesController extends Controller
     {
         $dishes = DB::table('dishes')->get();
         $restaurants = DB::table('restaurants')->get();
-       //dd($dishes);
-        //dd($restaurants);
+    
 
         return view('dishes.MealsToRestaurants', compact('dishes', 'restaurants'));
     }
 
     public function addMealsToRestaurants(request $request)
     {
-        dd($request->all());
-       // DB::table('dish_restaurant')
-       //          ->where('dishes.id',$request->dishes)
-       //          ->update([
 
-       //                  'restaurant_id'=>$request->name,
-
-       //                  ]);
-       //          return redirect()->route('dishes.index')
-       //      ->with('success', 'Update!');
-     
-     DB::table('dish_restaurant')->insert([
+     foreach ($request->except('_token','dishes') as  $key => $value)
+     {
+        DB::table('dish_restaurant')->insert([
             [
-            'dish_id'=>12,
-            'restaurant_id' => 1,
-            'restaurant_id' => 2,
-
+                'dish_id'=>$request->dish_id,
+                'restaurant_id' => $value,
             ]
         ]);   
+     }
      return redirect()->route('dishes.index')
             ->with('success', 'Добавени ястия към ресторант/и!');
     }

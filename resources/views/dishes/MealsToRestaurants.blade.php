@@ -9,7 +9,7 @@
 	 				<label for="name">
 						Ястие:
 					</label>
-					<select name="dishes" id="" class="form-control">
+					<select name="dish_id" id="" class="form-control">
 						@foreach( $dishes as $dish )
 							<option value="{{$dish->id}}"> {{ $dish->dish_name }}</option>
 						@endforeach

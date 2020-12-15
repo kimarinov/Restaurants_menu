@@ -61,7 +61,6 @@ class RestaurantsController extends Controller
             }
 
             if ($sum > $money) {
-               dd("нямате достатачно пари");
                return view('restaurants.noMoney', compact('sum', 'money'));
             }
             return view ('restaurants.freeConsumation',compact('free_consumation_orders','sum','dish_count','total_price'));
@@ -75,18 +74,17 @@ class RestaurantsController extends Controller
             $json_first_oreder = json_encode($first_order);
             $people = $request['people'];
             $choose = $request->choose;
-          //dd(DB::table('dishes')->where('id', 2)->first()->price);
-          $count = 0;
+        
             foreach ($request->except('_token', '_method','money','people','restaurant_id','choose') as  $value)
             {
-                $sum += DB::table('dishes')->where('id', $value)->first()->price;  
-                $count++;      
+                $sum += DB::table('dishes')->where('id', $value)->first()->price;        
             }
+
             $sum = $sum * $people * 1.05;
             if ($sum > $money) {
                 return view('restaurants.noMoney', compact('sum', 'money'));
             }
-            return view('restaurants.choise',compact('sum','money','json_first_oreder','people','restaurant_id'))->with('success','U can purches');
+            return view('restaurants.choise',compact('sum','money','json_first_oreder','people','restaurant_id'))->with('success','Може да поръчаш');
         } 
     }
     public function final_order(request $request)

@@ -18,8 +18,8 @@ class CheckNumberRequest extends FormRequest
         return [
             'name' => 'required',
             'price' => 'required|numeric|min:0|not_in:0',
-            'money' => 'required|numeric|min:0|not_in:0',
-            'number_of_people' => 'required|numeric|min:0|not_in:0',
+            // 'money' => 'required|numeric|min:0|not_in:0',
+            // 'number_of_people' => 'required|numeric|min:0|not_in:0',
         ];
     }
     public function messages()

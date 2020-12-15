@@ -12,8 +12,8 @@
 				<thead>
 					<tr>
 						<th scope="col" class="text-center">#</th>	
-						<th scope="col" class="text-center">First Menu</th>
-						<th scope="col" class="text-center">Price</th>
+						<th scope="col" class="text-center">Стартери</th>
+						<th scope="col" class="text-center">Цена</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,8 +42,8 @@
 			<thead>
 				<tr>
 					<th scope="col" class="text-center">#</th>	
-					<th scope="col" class="text-center">Second Menu</th>
-					<th scope="col" class="text-center">Price</th>
+					<th scope="col" class="text-center">Салати</th>
+					<th scope="col" class="text-center">Цена</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -71,8 +71,8 @@
 			<thead>
 				<tr>
 					<th scope="col" class="text-center">#</th>	
-					<th scope="col" class="text-center">Third Menu</th>
-					<th scope="col" class="text-center">Price</th>
+					<th scope="col" class="text-center">Основни ястия</th>
+					<th scope="col" class="text-center">Цена</th>
 				</tr>
 			</thead>
 			<tbody>
