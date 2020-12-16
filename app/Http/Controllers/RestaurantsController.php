@@ -50,7 +50,7 @@ class RestaurantsController extends Controller
         $sum = 0;
 
         if ($choose == 3) {
-            //dd($request->all());
+
             $free_consumation_orders = array();
             $dish_count = 0;
             $total_price = 0;
@@ -69,9 +69,8 @@ class RestaurantsController extends Controller
             if (($sum * 1.05) > $money) {
                return view('restaurants.noMoney', compact('sum', 'money'));
             }
-            //dd($free_consumation_orders);
            
-            return view ('restaurants.freeConsumationDrinks',compact('free_consumation_orders','sum','dish_count','total_price','restaurant_id','drinks'));
+            return view ('restaurants.freeConsumation',compact('free_consumation_orders','sum','dish_count','total_price','restaurant_id'));
         }
 
         //calculating for other choose
