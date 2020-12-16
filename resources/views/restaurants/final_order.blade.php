@@ -5,9 +5,9 @@
 	<thead>
 		<tr>
 			<th scope="col" class="text-center">#</th>	
-			<th scope="col" class="text-center">Dish</th>
-			<th scope="col" class="text-center">Price</th>
-			<th scope="col" class="text-center">Total price</th>
+			<th scope="col" class="text-center">Ястия и питиета</th>
+			<th scope="col" class="text-center">Цена</th>
+			<th scope="col" class="text-center">Тотална цена</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,9 +28,9 @@
 	 <tfoot class="table-dark">
 	 	<tr>
 		 	<th scope="col" class="text-center">#</th>	
-		 	<th scope="col" class="text-center">Number of dishes</th>	
-		 	<th scope="col" class="text-center">Price:</th>	
-			<th scope="col" class="text-center">Total price</th>
+		 	<th scope="col" class="text-center">Брой ястия и питиета</th>	
+		 	<th scope="col" class="text-center">Цена:</th>	
+			<th scope="col" class="text-center">Тотална цена</th>
 	 	</tr>
 	 	<tr>
 		 	<td class="text-center">#</td>

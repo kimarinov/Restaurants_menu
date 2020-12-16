@@ -13,6 +13,7 @@
 	<input type="hidden" name="people" value="{{$people}}">
 	<input type="hidden" name="money" value="{{$money}}">
 	<input type="hidden" name="sum" value="{{$sum}}">
+	<input type="hidden" name="json_first_oreder_drinks" value="{{$json_first_oreder_drinks}}">
 	<input type="hidden" name="restaurant_id" value="{{$restaurant_id}}">
 	<input  class="btn btn-success" type="submit" name="" value="Избирам меню!">
 	<a href="{{route('HomePage')}}" class="btn btn-warning">Отказвам менюто</a> 

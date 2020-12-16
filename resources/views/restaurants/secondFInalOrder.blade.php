@@ -40,7 +40,7 @@
 		$num = 1;
 		$second_total_price = 0;
 		@endphp
-		@foreach($second_orders as $key =>$second_order)
+		@foreach($final_second_orders as $key =>$second_order)
 		<tr>
 			<td class="text-center"><?= $num++ ?></td>
 			<td class="text-center">{{"$second_order_people x "}}{{$key}} </td>

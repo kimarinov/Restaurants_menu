@@ -3,7 +3,7 @@
 <h3>Меню за ресторант: "{{$dishes->first()->restaurant_name}}"</h3>
 
 
-<form action="{{route('secondChoiseFinalOrder')}}" method="POST" accept-charset="utf-8">
+<form action="{{route('secondChoiseDrinks',$restaurant_id)}}" method="POST" accept-charset="utf-8">
 	{{ csrf_field() }}
 		{{ method_field('POST') }}
 	<table class="table table-dark">
@@ -97,8 +97,10 @@
 	<input type="hidden" name="first_order_people" value="{{$first_order_people}}">
 	<input type="hidden" name="second_order_people" value="{{$second_order_people}}">
 	<input type="hidden" name="json_first_oreder" value="{{$json_first_oreder}}">
+	<input type="hidden" name="json_first_oreder_drinks" value="{{$json_first_oreder_drinks}}">
 	<input type="hidden" name="new_money" value="{{$new_money}}">
 	<input type="hidden" name="money" value="{{$money}}">
+	<input type="hidden" name="restaurant_id" value="{{$restaurant_id}}">
 	<input  class="btn btn-success" type="submit" name="" value="Направи поръчката!">
 	<a href="{{route('restaurants.index')}}" class="btn btn-warning"> Върни ме на ресторантите</a>  
 </form>
