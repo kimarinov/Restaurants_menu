@@ -20,7 +20,7 @@
 				<tr>
 					<td class="text-center"><?= $num++ ?></td>
 					<td class="text-center">{{$drink->drinks_name}}
-						<input type="checkbox" name="{{$drink->drinks_name}}" value="{{$drink->id}}" checked="">
+						<input type="checkbox" name="{{$drink->drinks_name}}" value="{{$drink->id}}">
 					<td class="text-center">{{$drink->price}}</td>
 					</td>
 			</tr>

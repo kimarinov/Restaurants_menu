@@ -8,7 +8,7 @@
  	<label>
  		Брой на хората:
  	</label>
- 	<input class="input-group-text" type="number" name="number_of_people" value="4">
+ 	<input class="input-group-text" type="number" name="number_of_people" >
  	@if($errors->has('number_of_people'))
 		<div class="col-sm-7 col-sm-offset-1 text-danger">
 			{{ $errors->first('number_of_people') }} 
@@ -17,7 +17,7 @@
  	<label>
  		Сума с която разполагате:
  	</label>
- 	<input class="input-group-text" type="number" name="money" value="10000">
+ 	<input class="input-group-text" type="number" name="money" >
  	@if($errors->has('money'))
 		<div class="col-sm-7 col-sm-offset-1 text-danger">
 			{{ $errors->first('money') }} 
@@ -26,7 +26,7 @@
  	<label>
  		Какво избирате?:
  	</label><br>
-	<input  type="radio" id="" name="choose" value="1" checked >
+	<input  type="radio" id="" name="choose" value="1" >
 	<label for="male">Стартер + салата + основно + питие</label><br>
 	<input type="radio" id="" name="choose" value="2">
 	<label for="male">Салата + питие </label><br>

@@ -3,7 +3,7 @@
 <form action="{{route('secondChoise',$restaurant_id)}}" method="POST">
 	{{ csrf_field()}}
  	{{ method_field('POST') }}
-	Колко човека приемата менюто?<input type="text" name="first_order_people" value="2">
+	Колко човека приемата менюто?<input type="text" name="first_order_people">
 	@if($errors->has('first_order_people'))
 		<div class="col-sm-7 col-sm-offset-1 text-danger">
 			{{ $errors->first('first_order_people') }} 
