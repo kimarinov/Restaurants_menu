@@ -7,7 +7,7 @@
  	{{ method_field('POST') }}
  	<input type="radio" id="" name="choose" value="1" >
 	<label for="choise">Приемате менюто</label><br>
-	<input type="radio" id="" name="choose" value="3" checked="">
+	<input type="radio" id="" name="choose" value="3" >
 	<label for="choise">Частично приемате менюто</label><br>
 	<input type="hidden" name="json_first_oreder" value="{{$json_first_oreder}}">
 	<input type="hidden" name="people" value="{{$people}}">

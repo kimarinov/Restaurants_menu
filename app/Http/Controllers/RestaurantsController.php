@@ -42,7 +42,7 @@ class RestaurantsController extends Controller
 
     public function menuDrinks(request $request)
     {
-       // dd($request->all());
+      
         $restaurant_id = $request->restaurant_id;
         $choose = $request->choose;
         $people = $request->number_of_people;
@@ -175,7 +175,7 @@ class RestaurantsController extends Controller
 
             $first_order_drinks = $request->except('_token', '_method','money','people','choose','restaurant_id','sum','json_first_oreder');
             $json_first_oreder_drinks = json_encode($first_order_drinks);
-            //dd($first_order_drinks);
+         
             $choose = $request->choose;
         
             foreach ($request->except('_token', '_method','money','people','restaurant_id','choose','json_first_oreder','sum') as  $value)
@@ -188,7 +188,7 @@ class RestaurantsController extends Controller
             if ($sum > $money) {
                 return view('restaurants.noMoney', compact('sum', 'money'));
             }
-           // dd($first_order_drinks);
+           
             return view('restaurants.choise',compact('sum','money','json_first_oreder','people','restaurant_id','json_first_oreder_drinks'))->with('success','Може да поръчаш');
         } 
     }
@@ -197,7 +197,7 @@ class RestaurantsController extends Controller
         
         $json_first_oreder = json_decode($request->input('json_first_oreder'));
         $json_first_oreder_drinks = json_decode($request->input('json_first_oreder_drinks'));
-        //dd($json_first_oreder_drinks);
+        
         $people = $request->people;
         $sum = $request->sum;
 
@@ -227,7 +227,7 @@ class RestaurantsController extends Controller
 
     public function secondChoise(NumberOfPeopleRequest $request)
     {  
-        //dd($request->all());
+      
         $first_order_people = $request->first_order_people;
         $second_order_people = $request->people - $first_order_people;
         
